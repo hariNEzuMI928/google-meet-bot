@@ -83,6 +83,7 @@ function postMessage(contents, message) {
       'token': BOT_USER_OAUTH_TOKEN,
       'channel': contents.channel,
       'thread_ts': contents.ts,
+      'reply_broadcast': true, // スレッド内で全ての人に返信を表示するかどうか
       'text': message,
     }
   };
