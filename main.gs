@@ -75,17 +75,15 @@ function getMeetUrl() {
 }
 
 /* Slackに投稿 */
-function postMessage(contents, message) {
+function postMessage(event, message) {
   const params = {
-    'method': 'post',
-    'contentType': 'application/json',
-    'payload': {
-      'token': BOT_USER_OAUTH_TOKEN,
-      'channel': contents.channel,
-      'thread_ts': contents.ts,
-      'reply_broadcast': true, // スレッド内で全ての人に返信を表示するかどうか
-      'text': message,
-    }
+    method: 'post',
+    payload: {
+      token: BOT_USER_OAUTH_TOKEN,
+      channel: event.channel,
+      thread_ts: event.ts,
+      text: message,
+    },
   };
   UrlFetchApp.fetch(SLACK_POST_URL, params);
 }
