@@ -1,6 +1,6 @@
 const VERIFICATION_TOKEN = 'xxxxxxxxxxxxxxxxxxxxxxxx';
+const BOT_USER_OAUTH_TOKEN = 'xoxb-xxxxxxxxxxxxxxxxxxxxxxx'
 const SLACK_POST_URL = 'https://slack.com/api/chat.postMessage';
-const BOT_USER_OAUTH_TOKEN = 'xoxb-xxxxx'
 
 /* Slackにメッセージを送信 */
 function doPost(e) {
@@ -76,12 +76,13 @@ function getMeetUrl() {
 
 /* Slackに投稿 */
 function postMessage(event, message) {
+  const thread_ts = event.thread_ts ?? event.ts;
   const params = {
     method: 'post',
     payload: {
       token: BOT_USER_OAUTH_TOKEN,
       channel: event.channel,
-      thread_ts: event.ts,
+      thread_ts: thread_ts,
       text: message,
     },
   };
